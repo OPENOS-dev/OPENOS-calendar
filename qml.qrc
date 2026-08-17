@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/qml">
+        <file>OpenUI.qml</file>
+        <file>Calendar.qml</file>
+    </qresource>
+</RCC>
