@@ -20,12 +20,11 @@ Window {
             Text { text: Qt.formatDate(shownDate, "yyyy年M月"); color: OpenUI.onSurface
                    font.pixelSize: OpenUI.typeHeadlineM; font.bold: true }
             Item { width: parent.width - 120; height: 1 }
-            Repeater { model: ["\u2039", "\u203A"]
+            Repeater { model: [{icon:"chevron-left", ctx:"Navigation"}, {icon:"chevron-right", ctx:"Navigation"}]
                 Rectangle { width: 28; height: 28; radius: OpenUI.shapeXs
                     color: hover.hovered ? Qt.rgba(OpenUI.onSurface.r, OpenUI.onSurface.g,
                                                    OpenUI.onSurface.b, OpenUI.hoverAlpha) : "transparent"
-                    Text { anchors.centerIn: parent; text: modelData; color: OpenUI.onSurfaceVariant;
-                           font.pixelSize: 18 }
+                    ThemedIcon { anchors.centerIn: parent; name: modelData.icon; ctx: modelData.ctx; size: 16; color: OpenUI.onSurfaceVariant }
                     MouseArea { id: hover; anchors.fill: parent; hoverEnabled: true
                         onClicked: { var d = calApp.shownDate
                                      d.setMonth(d.getMonth() + (index === 0 ? -1 : 1))
@@ -77,7 +76,7 @@ Window {
     Rectangle { x: parent.width - 40; y: 8; width: 32; height: 32; radius: OpenUI.shapeXs
         color: hover.hovered ? Qt.rgba(OpenUI.error.r, OpenUI.error.g,
                                        OpenUI.error.b, 0.3) : "transparent"
-        Text { anchors.centerIn: parent; text: "\u2715"; color: OpenUI.onSurface }
+        ThemedIcon { anchors.centerIn: parent; name: "window-close"; ctx: "Actions"; size: 14; color: OpenUI.onSurface }
         MouseArea { id: hover; anchors.fill: parent; hoverEnabled: true
             onClicked: calApp.close() } }
 }
